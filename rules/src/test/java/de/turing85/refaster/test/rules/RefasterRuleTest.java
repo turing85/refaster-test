@@ -11,7 +11,8 @@ import java.util.stream.Stream;
 final class RefasterRulesTest {
   private static final ImmutableSet<Class<?>> RULE_COLLECTIONS =
       ImmutableSet.of(
-          ListRules.class);
+          ListRules.class,
+          StreamRules.class);
 
   private static Stream<Arguments> validateRuleCollectionTestCases() {
     return RULE_COLLECTIONS.stream()

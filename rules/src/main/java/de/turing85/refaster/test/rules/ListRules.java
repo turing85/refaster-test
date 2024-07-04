@@ -9,6 +9,7 @@ public class ListRules {
   private ListRules() {
   }
 
+  @SuppressWarnings("unused")
   static final class EmptyList<T> {
     @BeforeTemplate
     boolean equalsZero(List<T> list) {
