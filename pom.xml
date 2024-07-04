@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.turing85</groupId>
+    <artifactId>refaster-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>rules</module>
+        <module>test</module>
+    </modules>
+
+    <properties>
+        <error_prone.version>2.28.0</error_prone.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
+        <picnic-refaster.version>0.16.1</picnic-refaster.version>
+
+        <assertj.version>3.26.0</assertj.version>
+        <junit.version>5.10.3</junit.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <parameters>true</parameters>
+                        <release>21</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <argLine>
+                            --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+                            --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+                            --add-opens jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED
+                            --add-opens jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED
+                        </argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_refaster</artifactId>
+                <version>${error_prone.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
